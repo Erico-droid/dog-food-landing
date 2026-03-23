@@ -43,10 +43,8 @@ body {
 }
 
 img {
-    display: block;
-    max-width: 100%;
-    object-fit: cover;
-    min-height: 427px;
+  display: block;
+  max-width: 100%;
 }
 
 
@@ -199,6 +197,7 @@ p {
   flex-direction: column;
   align-items: center;
   gap: 0;
+  width: 100%;
 }
 
 /*
@@ -207,10 +206,11 @@ p {
 */
 .bowl-visual {
   position: relative;
-  width: min(100%, 450px);
+  width: min(100%, clamp(260px, 36vw, 450px));
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 50%;
+  flex: 0 0 auto;
 }
 
 .bowl-split {
@@ -235,10 +235,12 @@ p {
 
 .bowl-photo {
   position: absolute;
-  top: 0;
+  inset: 0;
+  width: 100%;
   height: 100%;
-  width: auto;
+  object-fit: cover;
   max-width: none;
+  min-height: 0;
 }
 
 .bowl-half--fresh .bowl-photo {
@@ -246,7 +248,7 @@ p {
 }
 
 .bowl-half--kibble .bowl-photo {
-  right: 1px;
+  right: 0;
 }
 
 /* Subtle center seam to match the Figma split bowl treatment */
@@ -324,6 +326,10 @@ p {
 }
 
 .hero-center .trust-row {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
   margin-top: 8px;
   gap: 14px;
 }
@@ -336,6 +342,16 @@ p {
   color: var(--muted);
   font-size: 0.78rem;
   max-height: 80px;
+}
+
+.payment-row {
+  flex-wrap: nowrap;
+}
+
+.hero-center .trust-note,
+.hero-center .payment-row {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .trust-icon {
@@ -835,6 +851,11 @@ p {
     width: min(100%, 320px);
   }
 
+  .bowl-chip {
+    width: 48px;
+    height: 48px;
+  }
+
   .cta-button {
     width: 100%;
     min-width: 0;
@@ -842,7 +863,12 @@ p {
   }
 
   .trust-row {
-    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-center .trust-row {
+    flex-wrap: wrap;
+    row-gap: 8px;
   }
 
   .visual-card,
